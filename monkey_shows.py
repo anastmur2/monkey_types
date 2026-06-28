@@ -81,7 +81,7 @@ def retype(f, text):
     text.update()
     text.configure(state='disabled')
 
-    my_string_var.set("{} / {}".format(int(curr_line/PAGE_SIZE), pages))
+    my_string_var.set("{} / {}".format(int(curr_line/PAGE_SIZE)+1, pages))
 
 def update_text(left, text: Text):
     global lines, pages, curr_line, my_string_var, label
@@ -99,7 +99,7 @@ def update_text(left, text: Text):
     text.update()
     text.configure(state='disabled')
 
-    my_string_var.set("{} / {}".format(int(curr_line/PAGE_SIZE), pages))
+    my_string_var.set("{} / {}".format(int(curr_line/PAGE_SIZE)+1, pages))
 
 if __name__ == "__main__":
    main()
