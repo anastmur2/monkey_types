@@ -4,6 +4,7 @@ import os
 from ctypes import *
 from pathlib import Path
 import math
+import sys
 
 PAGE_SIZE = 15
 
@@ -13,7 +14,20 @@ def main():
 
     cwd = os.getcwd()
 
-    shared = Path(cwd) / "monkey.so"
+    filetype = ""
+
+    match sys.platform:
+        case "linux":
+            filetype = "so"
+        case "win32":
+            filetype = "dll"
+        case "darwin":
+            raise Exception("Nope, Apple doesn't work, sorry. Either Linux or Windows")
+
+    if filetype == "":
+        raise Exception("OS couldn't be identified")
+
+    shared = Path(cwd) / "monkey.{}".format(filetype)
     file = Path(cwd) / "isithamlet.txt"
     f = CDLL(shared)
     
@@ -35,7 +49,6 @@ def main():
 
     my_string_var.set("{} / ??".format(curr_line))
 
-    # ttk.Label(frm, text="Hello World!").grid(column=1, row=0)
     label = ttk.Label(frm, textvariable=my_string_var)
     label.grid(column=1, row=2)
     ttk.Button(frm, text="<", command=lambda: update_text(True, text=text)).grid(column=0, row=1)
