@@ -8,7 +8,7 @@
                      // than needed,
                      // but better more than less ig
 
-void main(int argc, char *argv[]) {
+void monkey_type(int argc, char *argv[]) {
     // 32 - 126 & 13 ASCII
     char c[C_NUM];
 

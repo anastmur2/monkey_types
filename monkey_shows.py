@@ -16,11 +16,9 @@ def main():
     shared = Path(cwd) / "monkey.so"
     file = Path(cwd) / "isithamlet.txt"
     f = CDLL(shared)
-
-    fp= open(file, 'r')
     
     lines = []
-    for line in open(file):
+    for line in open(file, "a+"):
         lines.append(line)
 
     root = Tk(className="Monkey")
@@ -54,8 +52,6 @@ def retype(f, text):
     cwd = os.getcwd()
 
     file = Path(cwd) / "isithamlet.txt"
-
-    fp= open(file, 'r')
     
     lines = []
     for line in open(file):
